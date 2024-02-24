@@ -240,38 +240,10 @@ export default function Page() {
             </form>
           </div>
         </div>
-        <div className="p-20 rounded-[20px] bg-white flex-1">
-          <div className="">
-            <h1 className="text-[32px] font-bold">ادخل بيانات فريقك</h1>
-          </div>
-          <div className="">
-            <form action={createTeamHandle}>
-              <div className="flex flex-col gap-6 items-center">
-                <div className="flex gap-2 flex-col w-[100px] items-center">
-                  ارسل صور الوصل
-                  <label
-                    htmlFor="reset"
-                    className="bg-gray-200 rounded-[20px] py-2 px-6 text-[18px] flex items-center "
-                  >
-                    img
-                  </label>
-                  <input
-                    type="file"
-                    id="reset"
-                    name="reset"
-                    className="bg-gray-200 rounded-[20px] py-2 px-6 text-[24px] outline-none"
-                  />
-                </div>
-              </div>
-
-              <button>send</button>
-            </form>
-          </div>
-        </div>
       </div>
       <div
         className={` ${
-          toggle ? "flex" : "hidden"
+          toggle ? "flex " : "hidden "
         }absolute top-0 left-0 h-[120vh] w-full backdrop-blur-sm bg-gray-400/25 flex justify-center items-center z-10"`}
       >
         <div className="p-10 bg-white rounded-[20px] flex  flex-col gap-8 justify-center items-center">

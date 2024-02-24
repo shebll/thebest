@@ -11,7 +11,7 @@ export default function LoginForm() {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.role);
       toast.success("تم تسجيل الدخول");
-      route.push("/dashboard");
+      route.push("/myteam");
     }
     if (response.error) {
       toast.error("حدث خطا قم باعاده المحاوله");
