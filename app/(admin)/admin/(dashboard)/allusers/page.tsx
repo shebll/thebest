@@ -5,7 +5,7 @@ import Image from "next/image";
 import { getAllUsers } from "@/action/getAllUsers";
 
 function AllUsers() {
-  const [currentPage, setCurrentPage] = useState(27);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [allUsers, setAllUsers] = useState<ApiResponseUsers | null>(null);
 
@@ -24,41 +24,41 @@ function AllUsers() {
   const handlePageChange = (page: any) => {
     setCurrentPage(page);
   };
-  // {_id, name, city}
+
   const UserTable = ({ users }: { users: User[] }) => (
     <div className="overflow-x-auto">
       <table className="table-auto min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+        <thead className="bg-[#111111]">
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-100 uppercase tracking-wider"
             >
               Name
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-100 uppercase tracking-wider"
             >
               Phone
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-100 uppercase tracking-wider"
             >
               Image
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-100 uppercase tracking-wider"
             >
               Team ID
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-[#111111] divide-y divide-gray-200">
           {users.map((user) => (
-            <tr key={user._id} className="hover:bg-gray-100 transition-colors">
+            <tr key={user._id} className="hover:bg-[#1f1f1f] transition-colors">
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link
                   href={`/admin/allusers/${user._id}`}

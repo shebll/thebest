@@ -9,7 +9,7 @@ export default function AdminLayout({
   return (
     <main className="flex min-h-[85vh] p-4 gap-10">
       <AdminSideBar />
-      <div className="flex-1 bg-white p-6 rounded-[20px]">{children}</div>
+      <div className="flex-1 rounded-[20px] bg-[#181818] p-10">{children}</div>
     </main>
   );
 }

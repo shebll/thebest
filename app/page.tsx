@@ -3,17 +3,29 @@ import LoginForm from "./_components/LoginForm";
 
 export default function Home() {
   return (
-    <main className="min-h-screen container mx-auto flex justify-center items-center">
-      <div className="p-10 rounded-[20px] bg-gray-100 flex flex-col  gap-20 justify-center items-center">
-        <div className="">
+    <main className="container mx-auto flex flex-col gap-10  justify-center items-center py-[100px]">
+      <div className="hero-card">
+        <div className="flex flex-col gap-6">
           {/* <Image src={"/"} alt="logo image" width={60} height={60} /> */}
-          <h1 className="text-[32px] font-bold">THE BEST</h1>
+          <h1 className="text-[20px] font-bold text-center">
+            تحقق من أفضل موقع لتنظيم فرق وإنشاء دورياتك الرياضية
+            <br /> أحلى الأوقات الرياضية مع فريقك!
+          </h1>
+          <h2 className="text-[28px] font-bold text-center">هل معك فريق ؟</h2>
         </div>
-        <div className="flex flex-col  items-center justify-center">
-          <p className="text-[32px] font-medium">هل معك فريق ؟</p>
-          <p className="text-[32px] font-medium">قم بادخال الكود</p>
+        <div className="">
           <LoginForm />
         </div>
+      </div>
+      <div className=" flex flex-col gap-4">
+        <h2 className="text-[48px] font-bold text-center">The Best</h2>
+        <p className="text-center text-[24px] font-semibold text-[#c2c2c2] ">
+          من أفضل موقع لتنظيم فرق وإنشاء دورياتك الرياضية بكل سهولة ويسر.
+          <br /> قم بإدارة الفرق، وجدولة المباريات، وتتبع النتائج ، وتفاعل مع
+          اللاعبين، كل ذلك في مكان واحد. <br />
+          اكتشف الآن كيف يمكن لموقعنا أن يسهل عليك تنظيم أحلى الأوقات الرياضية
+          مع فريقك!
+        </p>
       </div>
     </main>
   );

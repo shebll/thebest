@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SideBar } from "../_components/UI/SideBar";
 
 export default function DashboardLayout({
@@ -7,9 +6,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex min-h-[85vh] p-4 gap-10">
+    <main className="container mx-auto flex gap-10 min-h-[84vh]">
       <SideBar />
-      <div className="flex-1 bg-white p-6 rounded-[20px]">{children}</div>
+      <div className="p-10 rounded-[20px] bg-[#181818] flex-1 flex flex-col gap-10">
+        {children}
+      </div>
     </main>
   );
 }

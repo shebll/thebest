@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import TeamDetails from "./TeamDetails";
 import { getTeamAdmin } from "@/action/getTeamAdmin";
+
 type props = {
   params: {
     teamId: string;

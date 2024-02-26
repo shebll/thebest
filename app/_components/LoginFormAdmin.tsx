@@ -21,27 +21,27 @@ export default function LoginFormAdmin() {
   };
   return (
     <form action={loginHandle} className="flex gap-2 flex-col">
-      <div className="">
+      <div className="flex flex-col gap-2">
         <label htmlFor="email" className="">
           الاميل
         </label>
-        <div className="px-2 py-2 pr-10 rounded-[10px] flex gap-10 justify-between items-center bg-white">
-          <div className="h-full">
+        <div className="px-2 py-2 pr-10 rounded-[10px] flex gap-10 justify-between items-center bg-[#343434]">
+          <div className="h-full bg-[#343434]">
             <input
               type="email"
               placeholder="email"
               name="email"
               id="email"
-              className="w-full h-full border-none outline-none "
+              className="w-full h-full border-none outline-none bg-tr "
             />
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="flex flex-col gap-2">
         <label htmlFor="password" className="">
           الباسورد
         </label>
-        <div className="px-2 py-2 pr-10 rounded-[10px] flex gap-10 justify-between items-center bg-white">
+        <div className="px-2 py-2 pr-10 rounded-[10px] flex gap-10 justify-between items-center bg-[#343434]">
           <div className="h-full">
             <input
               type="password"
@@ -53,9 +53,7 @@ export default function LoginFormAdmin() {
           </div>
         </div>
       </div>
-      <button className="px-8 py-2 rounded-[20px] bg-[#39299B] text-white font-bold shadow-md">
-        ادخل
-      </button>
+      <button className="btn lg">ادخل</button>
     </form>
   );
 }

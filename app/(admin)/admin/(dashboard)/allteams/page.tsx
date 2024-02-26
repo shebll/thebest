@@ -7,7 +7,7 @@ function AllTeams() {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
-  
+
   const [allTeams, setAllTeams] = useState<ApiResponseTeams | null>();
   useEffect(() => {
     const getTeamData = async () => {
@@ -30,25 +30,25 @@ function AllTeams() {
   const TeamTable = ({ teams }: { teams: Teams[] }) => (
     <div className="overflow-x-auto">
       <table className="table-auto min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+        <thead className="bg-[#111111]">
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-gray-100 uppercase tracking-wider text-xl font-bold"
             >
               Name
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xl font-bold text-gray-100 uppercase tracking-wider"
             >
               City
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-[#111111] divide-y divide-gray-200">
           {teams.map((team) => (
-            <tr key={team._id} className="hover:bg-gray-100 transition-colors">
+            <tr key={team._id} className="hover:bg-[#1a1a1a] transition-colors">
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link
                   href={`/admin/allteams/${team._id}`}
@@ -89,8 +89,8 @@ function AllTeams() {
 
   const SkeletonRow = () => (
     <tr className="animate-pulse">
-      <td className="px-6 py-4 whitespace-nowrap bg-gray-200"></td>
-      <td className="px-6 py-4 whitespace-nowrap bg-gray-200"></td>
+      <td className="px-6 py-4 whitespace-nowrap ">...</td>
+      <td className="px-6 py-4 whitespace-nowrap">...</td>
     </tr>
   );
 
@@ -101,23 +101,23 @@ function AllTeams() {
           {loading ? (
             <div className="overflow-x-auto">
               <table className="table-auto min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-[#111111]">
                   <tr>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-right text-gray-100 uppercase tracking-wider text-xl font-bold"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-right text-xl font-bold text-gray-100 uppercase tracking-wider"
                     >
                       City
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className=" divide-y divide-gray-200">
                   <SkeletonRow />
                   <SkeletonRow />
                   <SkeletonRow />

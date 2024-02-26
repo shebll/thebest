@@ -30,33 +30,51 @@ function AllRequests() {
   const TeamRequestsTable = ({ requests }: { requests: TeamRequest[] }) => (
     <div className="overflow-x-auto">
       <table className="table-auto min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+        <thead className="bg-[#111111]">
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
             >
               Name
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
             >
               Request ID
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
             >
               Team ID
             </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
+            >
+              status
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
+            >
+              createdAt
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
+            >
+              updatedAt
+            </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-[#111111] divide-y divide-gray-200">
           {requests.map((request) => (
             <tr
               key={request._id}
-              className="hover:bg-gray-100 transition-colors"
+              className="hover:bg-[#1f1f1f] transition-colors"
             >
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link
@@ -69,6 +87,13 @@ function AllRequests() {
               <td className="px-6 py-4 whitespace-nowrap">{request._id}</td>
               <td className="px-6 py-4 whitespace-nowrap">
                 {request.teamId?._id}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">{request.status}</td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                {request.createdAt}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                {request.updatedAt}
               </td>
             </tr>
           ))}
@@ -84,19 +109,19 @@ function AllRequests() {
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
             >
               Name
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
             >
               Request ID
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-100  uppercase tracking-wider"
             >
               Team ID
             </th>

@@ -12,52 +12,60 @@ export function SideBar() {
   }, []);
 
   return (
-    <div className="bg-white p-6 rounded-[20px] flex flex-col justify-between">
+    <div className="p-10 rounded-[20px] bg-[#181818] flex flex-col gap-10">
       <div className="flex flex-col gap-4">
-        <Link
-          href={"/payment"}
-          className={`px-14 py-2 ${
-            pathName == "/payment" ? "bg-[#39299B] text-white" : "bg-gray-200"
-          } font-medium text-center text-lg rounded-[20px] w-full hover:bg-[#39299B] hover:text-white transition-all`}
-        >
-          وسيله الدفع
-        </Link>
         <Link
           href={"/myteam"}
           className={`px-14 py-2 ${
-            pathName == "/myteam" ? "bg-[#39299B] text-white" : "bg-gray-200"
-          } font-medium text-center text-lg rounded-[20px] w-full hover:bg-[#39299B] hover:text-white transition-all`}
+            pathName == "/myteam" ? "bg-[#c09238] text-white" : "bg-[#343434]"
+          } font-medium text-center text-lg rounded-[10px] w-full hover:bg-[#c09238] hover:text-white transition-all`}
         >
           التشكيله
         </Link>
+        {role == "Leader" && (
+          <>
+            <Link
+              href={"/mygroup"}
+              className={`px-14 py-2 ${
+                pathName == "/mygroup"
+                  ? "bg-[#c09238] text-white"
+                  : "bg-[#343434]"
+              } font-medium text-center text-lg rounded-[10px] w-full hover:bg-[#c09238] hover:text-white transition-all`}
+            >
+              المجموعات
+            </Link>
+            <Link
+              href={"/payment"}
+              className={`px-14 py-2 ${
+                pathName == "/payment"
+                  ? "bg-[#c09238] text-white"
+                  : "bg-[#343434]"
+              } font-medium text-center text-lg rounded-[10px] w-full hover:bg-[#c09238] hover:text-white transition-all`}
+            >
+              وسيله الدفع
+            </Link>
+          </>
+        )}
+
         <Link
           href={"/mymatches"}
           className={`px-14 py-2 ${
-            pathName == "/mymatches" ? "bg-[#39299B] text-white" : "bg-gray-200"
-          } font-medium text-center text-lg rounded-[20px] w-full hover:bg-[#39299B] hover:text-white transition-all`}
+            pathName == "/mymatches"
+              ? "bg-[#c09238] text-white"
+              : "bg-[#343434]"
+          } font-medium text-center text-lg rounded-[10px] w-full hover:bg-[#c09238] hover:text-white transition-all`}
         >
           المباريات
         </Link>
         <Link
           href={"/editteam"}
           className={`px-14 py-2 ${
-            pathName == "/editteam" ? "bg-[#39299B] text-white" : "bg-gray-200"
-          } font-medium text-center text-lg rounded-[20px] w-full hover:bg-[#39299B] hover:text-white transition-all`}
+            pathName == "/editteam" ? "bg-[#c09238] text-white" : "bg-[#343434]"
+          } font-medium text-center text-lg rounded-[10px] w-full hover:bg-[#c09238] hover:text-white transition-all`}
         >
           تعديل الفريق
         </Link>
-        {
-          <Link
-            href={"/mygroup"}
-            className={`px-14 py-2 ${
-              pathName == "/mygroup" ? "bg-[#39299B] text-white" : "bg-gray-200"
-            } font-medium text-center text-lg rounded-[20px] w-full hover:bg-[#39299B] hover:text-white transition-all`}
-          >
-            المجموعات
-          </Link>
-        }
       </div>
-      <div className="">s</div>
     </div>
   );
 }

@@ -78,6 +78,9 @@ interface TeamRequest {
     _id: string;
     name: string;
   };
+  status: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface ApiResponseRequests {

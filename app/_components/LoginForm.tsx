@@ -19,23 +19,26 @@ export default function LoginForm() {
   };
   return (
     <form action={loginHandle} className="flex gap-2 flex-col">
-      <label htmlFor="" className="">
-        code
-      </label>
-      <div className="px-2 py-2 pr-10 rounded-[10px] flex gap-10 justify-between items-center bg-white">
+      <div className="px-2 py-2 pr-10 rounded-[10px] flex gap-10 justify-between items-center bg-[#343434]">
         <div className="h-full">
           <input
+            pattern="\d{5}"
+            maxLength={5}
+            minLength={5}
+            required
             type="text"
-            placeholder="125722"
+            placeholder="22 445"
             name="code"
             id="code"
-            className="w-full h-full border-none outline-none "
+            title="Please enter a 5-digit code."
+            className="w-full h-full border-none outline-none bg-transparent"
           />
         </div>
-        <button className="px-8 py-2 rounded-[20px] bg-[#39299B] text-white font-bold shadow-md">
-          ادخل
-        </button>
+        <button className="btn sm">ادخل</button>
       </div>
+      <label htmlFor="" className=" text-[20px] font-semibold">
+        ادخل الرمز الخاص بيك
+      </label>
     </form>
   );
 }

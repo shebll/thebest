@@ -2,18 +2,22 @@
 
 import { revalidateTag } from "next/cache";
 
-export const updateMember = async (
-  formData: FormData,
-  userId: string,
-  token: string
+export const updateLeague = async (
+  token: string,
+  leagueId: string,
+  newName: string
 ) => {
-  console.log(formData);
   const response = await fetch(
-    `https://the-best-football.onrender.com/user/update/${userId}`,
+    `https://the-best-football.onrender.com/league/updateLeague/${leagueId}`,
     {
       method: "PUT",
-      body: formData,
-      headers: { Authorization: `Moo__${token}` },
+      headers: {
+        Authorization: `Moo__${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: newName,
+      }),
     }
   );
   const responseData = await response.json();
@@ -21,7 +25,7 @@ export const updateMember = async (
   if (responseData.success === false) {
     return { error: responseData.message };
   } else {
-    revalidateTag("team");
+    revalidateTag("currentLeague");
     return { success: responseData.message, data: responseData };
   }
 };
