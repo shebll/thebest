@@ -1,9 +1,11 @@
 import { blockUser } from "@/action/blockUser";
 import Image from "next/image";
-import React from "react";
+import React, { useTransition } from "react";
 import { toast } from "sonner";
 
 function UserDetails({ userData }: { userData: UserDetails }) {
+  const [isPending, startTransition] = useTransition();
+
   const handleBlockUser = async (userId: string) => {
     console.log(userId);
     const token = localStorage.getItem("token");
@@ -19,6 +21,11 @@ function UserDetails({ userData }: { userData: UserDetails }) {
   };
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
+      {isPending && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
+          <div className="">loading...</div>
+        </div>
+      )}
       <h2 className="text-3xl font-bold mb-4">{userData.name} Details</h2>
       <div className="bg-[#111111] shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -54,7 +61,6 @@ function UserDetails({ userData }: { userData: UserDetails }) {
             <p className="font-bold">Created At:</p>
             <p>{new Date(userData.createdAt).toLocaleString()}</p>
           </div>
-
           <div>
             <p className="font-bold">Image :</p>
             <div>
@@ -69,7 +75,6 @@ function UserDetails({ userData }: { userData: UserDetails }) {
               )}
             </div>
           </div>
-
           <div>
             <p className="font-bold">Updated At:</p>
             <p>{new Date(userData.updatedAt).toLocaleString()}</p>

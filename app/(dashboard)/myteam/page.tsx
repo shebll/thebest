@@ -77,26 +77,36 @@ function Page() {
         //     </tbody>
         //   </table>
         // </div>
-        <div>
-          {myTeam.teamMembers.map((player, i) => (
-            <div
-              key={player._id}
-              className="absolute flex flex-col justify-center items-center gap-1 w-fit player-card"
-            >
-              <div className="">
-                <Image
-                  src={player.image ? player.image.secure_url : "/image.png"}
-                  alt={`${player.name} photo`}
-                  width={100}
-                  height={100}
-                  className="rounded-full shadow-md border-[2px] border-gray-200"
-                />
+        <div className="flex flex-col items-center">
+          <div className="team-name">{myTeam.team.name}</div>
+          <div>
+            {myTeam.teamMembers.map((player, i) => (
+              <div
+                key={player._id}
+                className="absolute flex flex-col justify-center items-center gap-1 w-fit player-card"
+              >
+                <div className="">
+                  <Image
+                    src={player.image ? player.image.secure_url : "/image.png"}
+                    alt={`${player.name} photo`}
+                    width={70}
+                    height={70}
+                    className="block lg:hidden rounded-full shadow-md border-[2px] border-gray-200"
+                  />
+                  <Image
+                    src={player.image ? player.image.secure_url : "/image.png"}
+                    alt={`${player.name} photo`}
+                    width={100}
+                    height={100}
+                    className="hidden lg:block rounded-full shadow-md border-[2px] border-gray-200"
+                  />
+                </div>
+                <div className="">
+                  <h1>{player.name}</h1>
+                </div>
               </div>
-              <div className="">
-                <h1>{player.name}</h1>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       ) : (
         <div className="text-center">Loading...</div>

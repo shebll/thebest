@@ -11,7 +11,7 @@ export const getMatches = async (token: string, teamId: string) => {
   const responseData = await response.json();
   console.log(responseData);
   if (responseData.success === false) {
-    return { error: responseData.message };
+    return { error: responseData.message, data: responseData };
   } else {
     return { success: responseData.message, data: responseData };
   }

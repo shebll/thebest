@@ -41,7 +41,12 @@ function Page() {
   };
 
   return (
-    <div className="flex justify-between items-start gap-10">
+    <div className="flex justify-between items-start gap-10 p-4 lg:p-10">
+      {isPending && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
+          <div className="">loading...</div>
+        </div>
+      )}
       <div className="flex flex-col gap-14 flex-1">
         <div className="flex flex-col gap-1">
           <h1 className="text-[32px] font-bold">وسيله الدفع لتفعيل الفريق</h1>
@@ -85,7 +90,14 @@ function Page() {
                 />
               </div>
             </div>
-            <button className="btn sm">{isPending ? "تحميل.." : "ارسل"}</button>
+            <button
+              disabled={isPending}
+              className={`btn sm  ${
+                isPending && " opacity-40 cursor-not-allowed"
+              }`}
+            >
+              {isPending ? "تحميل.." : "ارسل"}
+            </button>
           </form>
         </div>
         <div className="">
@@ -116,7 +128,7 @@ function Page() {
           </div>
         </div>
       </div>
-      <div className="flex-1">
+      <div className="hidden lg:block flex-1">
         {toggle && (
           <div className="p-10 bg-[#343434] rounded-[20px] flex flex-col gap-8 justify-center items-center font-bold">
             تم ارسال الوصل برجاء الانتظار

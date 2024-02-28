@@ -2,7 +2,7 @@
 import { afterGame } from "@/action/afterGame";
 import { beforeGame } from "@/action/beforeGame";
 import { getGroupGames } from "@/action/getGroupGames";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
 type props = {
   params: {
@@ -45,6 +45,8 @@ interface GamesResponse {
 }
 
 export default function GroupDetailPage({ params: { groupId } }: props) {
+  const [isPendingInfo, startTransitionInfo] = useTransition();
+  const [isPendingScore, startTransitionScore] = useTransition();
   const [gamesData, setGamesData] = useState<GamesResponse | null>(null);
 
   useEffect(() => {
@@ -66,39 +68,49 @@ export default function GroupDetailPage({ params: { groupId } }: props) {
   const handleInfoGameSubmit = async (formData: FormData) => {
     const token = localStorage.getItem("token");
     if (token) {
-      const response = await beforeGame(
-        token,
-        formData.get("gameId") as string,
-        formData
-      );
-      if (response.success) {
-        toast.success("تم انشاء الفريق");
-      }
-      if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
-      }
+      startTransitionInfo(async () => {
+        const response = await beforeGame(
+          token,
+          formData.get("gameId") as string,
+          formData
+        );
+        if (response.success) {
+          toast.success("تم تحديد المبارة");
+        }
+        if (response.error) {
+          toast.error("حدث خطا قم باعاده المحاوله");
+        }
+      });
     }
   };
 
   const handleGameScoreSubmit = async (formData: FormData) => {
     const token = localStorage.getItem("token");
     if (token) {
-      const response = await afterGame(
-        token,
-        formData.get("gameId") as string,
-        formData
-      );
-      if (response.success) {
-        toast.success("تم انشاء الفريق");
-      }
-      if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
-      }
+      startTransitionScore(async () => {
+        const response = await afterGame(
+          token,
+          formData.get("gameId") as string,
+          formData
+        );
+        if (response.success) {
+          toast.success("تم تحديد نتيجه المبارة");
+        }
+        if (response.error) {
+          toast.error("حدث خطا قم باعاده المحاوله");
+        }
+      });
     }
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {(isPendingInfo || isPendingScore) && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
+          <div className="">loading...</div>
+        </div>
+      )}
+
       {gamesData ? (
         gamesData.success ? (
           <div>

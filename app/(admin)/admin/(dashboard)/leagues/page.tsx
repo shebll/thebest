@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { getCurrentLeague } from "@/action/getCurrentLeague";
 import { endingLeague } from "@/action/endingLeague";
 import { updateLeague } from "@/action/updateLeague";
@@ -51,6 +51,7 @@ interface LeagueResponse {
   groups: GroupDetails[];
 }
 function Leagues() {
+  const [isPending, startTransition] = useTransition();
   const [newLeagueName, setNewLeagueName] = useState<string>("");
   const [createLeague, setCreateLeague] = useState<string>("");
   const [leagueData, setLeagueData] = useState<LeagueResponse | null>(null);
@@ -110,6 +111,11 @@ function Leagues() {
   };
   return (
     <div className="container mx-auto px-4 py-8">
+      {isPending && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
+          <div className="">loading...</div>
+        </div>
+      )}
       {leagueData ? (
         <div>
           {leagueData.success !== true ? (

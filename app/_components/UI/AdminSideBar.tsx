@@ -48,7 +48,7 @@ export function AdminSideBar() {
                 : "bg-[#343434]"
             } font-medium text-center text-lg rounded-[20px] w-full hover:bg-[#c09238] hover:text-white transition-all`}
           >
-            انشاء الدوريات
+            الدوريات
           </Link>
         }
       </div>

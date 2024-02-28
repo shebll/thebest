@@ -32,11 +32,13 @@ interface ApiResponseTeam {
 }
 // todo
 interface ApiResponseGroup {
-  any;
+  success: boolean;
+  message: string;
 }
 // todo
 interface ApiResponseMatches {
-  any;
+  success: boolean;
+  message: string;
 }
 interface Image {
   secure_url: string;

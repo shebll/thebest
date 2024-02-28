@@ -6,25 +6,33 @@ import React, { useState, useTransition } from "react";
 import { toast } from "sonner";
 
 export default function Page() {
+  const [isPending, startTransition] = useTransition();
   const [leaderCode, setLeaderCode] = useState("");
   const [memberCode, setMemberCode] = useState("");
   const [toggle, setToggle] = useState(false);
   const createTeamHandle = async (formData: FormData) => {
-    const response = await createTeam(formData);
-    if (response.success) {
-      setToggle(true);
-      setLeaderCode(response.data.leaderCode);
-      setMemberCode(response.data.memberCode);
-      toast.success("تم انشاء الفريق");
-    }
-    if (response.error) {
-      toast.error("حدث خطا قم باعاده المحاوله");
-    }
+    startTransition(async () => {
+      const response = await createTeam(formData);
+      if (response.success) {
+        setToggle(true);
+        setLeaderCode(response.data.leaderCode);
+        setMemberCode(response.data.memberCode);
+        toast.success("تم انشاء الفريق");
+      }
+      if (response.error) {
+        toast.error("حدث خطا قم باعاده المحاوله");
+      }
+    });
   };
   return (
     <>
-      <div className="container mx-auto flex gap-10 ">
-        <div className="p-10 rounded-[20px] bg-[#181818] flex-1 flex flex-col gap-10">
+      {isPending && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
+          <div className="">loading...</div>
+        </div>
+      )}
+      <div className="container mx-auto flex gap-10 flex-col lg:flex-row p-4 lg:p-0 ">
+        <div className="p-4 lg:p-10 rounded-[20px] bg-[#181818] flex-1 flex flex-col gap-10">
           <div className="">
             <h1 className="text-[32px] font-bold">ادخل بيانات فريقك</h1>
             <p className="text-gray-300">
@@ -37,41 +45,48 @@ export default function Page() {
                 <div className="flex flex-col gap-2">
                   <label htmlFor="teamName">اسم الفريق</label>
                   <input
+                    required
                     type="text"
                     id="teamName"
                     name="teamName"
-                    placeholder="اسم"
+                    placeholder="اسم الفريق"
                     className="rounded-[10px] py-2 px-4 text-[18px] outline-none"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="city">المدينة</label>
                   <input
+                    required
                     type="text"
                     id="city"
                     name="city"
-                    placeholder="اسم"
+                    placeholder="اسم المدينة"
                     className="rounded-[10px] py-2 px-4 text-[18px] outline-none"
                   />
                 </div>
-                <div className="flex gap-4 items-end">
+                <div className="flex gap-4 flex-col lg:flex-row items-end">
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[0][name]">اسم القائد </label>
                     <input
+                      required
                       type="text"
                       id="teamMembers[0][name]"
                       name="teamMembers[0][name]"
-                      placeholder="اسم"
+                      placeholder="اسم القائد"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[0][phone]">رقم القائد </label>
                     <input
+                      pattern="01[0125][0-9]{8}"
+                      maxLength={11}
+                      title="الرجاء إدخال رقم هاتف مصري صحيح يبدأ بـ 011 أو 012 أو 010 أو 015"
+                      required
                       type="text"
                       id="teamMembers[0][phone]"
                       name="teamMembers[0][phone]"
-                      placeholder="اسم"
+                      placeholder="رقم القائد"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
@@ -88,6 +103,7 @@ export default function Page() {
                       />
                     </label>
                     <input
+                      required
                       type="file"
                       id="leaderImg"
                       name="leaderImg"
@@ -96,24 +112,29 @@ export default function Page() {
                   </div>
                   👑
                 </div>
-                <div className="flex gap-4 items-end">
+                <div className="flex gap-4 flex-col lg:flex-row items-end">
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[1][name]">اسم اللاعب 1</label>
                     <input
+                      required
                       type="text"
                       id="teamMembers[1][name]"
                       name="teamMembers[1][name]"
-                      placeholder="اسم"
+                      placeholder="اسم اللاعب الاول"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[1][phone]">رقم اللاعب 1</label>
                     <input
+                      pattern="01[0125][0-9]{8}"
+                      maxLength={11}
+                      title="الرجاء إدخال رقم هاتف مصري صحيح يبدأ بـ 011 أو 012 أو 010 أو 015"
+                      required
                       type="text"
                       id="teamMembers[1][phone]"
                       name="teamMembers[1][phone]"
-                      placeholder="اسم"
+                      placeholder="رقم اللاعب الاول"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
@@ -130,6 +151,7 @@ export default function Page() {
                       />
                     </label>
                     <input
+                      required
                       type="file"
                       id="memberOneImg"
                       name="memberOneImg"
@@ -137,24 +159,29 @@ export default function Page() {
                     />
                   </div>
                 </div>
-                <div className="flex gap-4 items-end">
+                <div className="flex gap-4 flex-col lg:flex-row items-end">
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[2][name]">اسم اللاعب 2</label>
                     <input
+                      required
                       type="text"
                       id="teamMembers[2][name]"
                       name="teamMembers[2][name]"
-                      placeholder="اسم"
+                      placeholder="اسم اللاعب الثاني"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[2][phone]">رقم اللاعب 2</label>
                     <input
+                      required
+                      pattern="01[0125][0-9]{8}"
+                      maxLength={11}
+                      title="الرجاء إدخال رقم هاتف مصري صحيح يبدأ بـ 011 أو 012 أو 010 أو 015"
                       type="text"
                       id="teamMembers[2][phone]"
                       name="teamMembers[2][phone]"
-                      placeholder="اسم"
+                      placeholder="رقم اللاعب الثاني"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
@@ -170,27 +197,37 @@ export default function Page() {
                         height={20}
                       />
                     </label>
-                    <input type="file" id="memberTwoImg" name="memberTwoImg" />
+                    <input
+                      required
+                      type="file"
+                      id="memberTwoImg"
+                      name="memberTwoImg"
+                    />
                   </div>
                 </div>
-                <div className="flex gap-4 items-end">
+                <div className="flex gap-4 flex-col lg:flex-row items-end">
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[3][name]">اسم اللاعب 3</label>
                     <input
+                      required
                       type="text"
                       id="teamMembers[3][name]"
                       name="teamMembers[3][name]"
-                      placeholder="اسم"
+                      placeholder="اسم اللاعب الثالث"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[3][phone]">رقم اللاعب 3</label>
                     <input
+                      pattern="01[0125][0-9]{8}"
+                      maxLength={11}
+                      title="الرجاء إدخال رقم هاتف مصري صحيح يبدأ بـ 011 أو 012 أو 010 أو 015"
+                      required
                       type="text"
                       id="teamMembers[3][phone]"
                       name="teamMembers[3][phone]"
-                      placeholder="اسم"
+                      placeholder="رقم اللاعب الثالث"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
@@ -207,6 +244,7 @@ export default function Page() {
                       />
                     </label>
                     <input
+                      required
                       type="file"
                       id="memberThreeImg"
                       name="memberThreeImg"
@@ -214,24 +252,29 @@ export default function Page() {
                     />
                   </div>
                 </div>
-                <div className="flex gap-4 items-end">
+                <div className="flex gap-4 flex-col lg:flex-row items-end">
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[4][name]">اسم اللاعب 4</label>
                     <input
+                      required
                       type="text"
                       id="teamMembers[4][name]"
                       name="teamMembers[4][name]"
-                      placeholder="اسم"
+                      placeholder="اسم اللاعب الرابع"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
                     <label htmlFor="teamMembers[4][phone]">رقم اللاعب 4</label>
                     <input
+                      required
+                      title="الرجاء إدخال رقم هاتف مصري صحيح يبدأ بـ 011 أو 012 أو 010 أو 015"
+                      pattern="01[0125][0-9]{8}"
+                      maxLength={11}
                       type="text"
                       id="teamMembers[4][phone]"
                       name="teamMembers[4][phone]"
-                      placeholder="اسم"
+                      placeholder="رقم اللاعب الرابع"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
                     />
                   </div>
@@ -248,6 +291,7 @@ export default function Page() {
                       />
                     </label>
                     <input
+                      required
                       type="file"
                       id="memberFourImg"
                       name="memberFourImg"
@@ -256,7 +300,17 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-              <button className="w-full btn lg">سجل الفريق</button>
+              <div className="p-2 rounded-lg bg-red-500 font-semibold">
+                يجب ادخال جميع البيانات صحيحه{" "}
+              </div>
+              <button
+                disabled={isPending}
+                className={`btn lg  ${
+                  isPending && " opacity-40 cursor-not-allowed"
+                }`}
+              >
+                {isPending ? "انتظر...." : "سجل الفريق"}
+              </button>
             </form>
           </div>
         </div>
@@ -322,7 +376,7 @@ export default function Page() {
       <div
         className={` ${
           toggle ? "flex " : "hidden "
-        }absolute top-0 left-0 h-[120vh] w-full backdrop-blur-sm bg-gray-400/25 flex justify-center items-center z-10"`}
+        }fixed top-0 left-0 h-[120vh] w-full backdrop-blur-sm bg-gray-400/25 flex justify-center items-center z-10"`}
       >
         <div className="p-10 bg-[#343434] rounded-[20px] flex  flex-col gap-8 justify-center items-center">
           <div className="flex flex-col gap-2 justify-center items-center w-full">

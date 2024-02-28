@@ -1,26 +1,33 @@
 "use client";
-import { login } from "@/action/login";
 import { loginAdmin } from "@/action/loginAdmin";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { toast } from "sonner";
 
 export default function LoginFormAdmin() {
+  const [isPending, startTransition] = useTransition();
   const route = useRouter();
   const loginHandle = async (formData: FormData) => {
-    const response = await loginAdmin(formData);
-    if (response.success) {
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("role", response.data.role);
-      // localStorage.setItem("teamId", response.data.role);
-      toast.success("تم تسجيل الدخول");
-      route.push("/admin/allteams");
-    }
-    if (response.error) {
-      toast.error("حدث خطا قم باعاده المحاوله");
-    }
+    startTransition(async () => {
+      const response = await loginAdmin(formData);
+      if (response.success) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("role", response.data.role);
+        toast.success("تم تسجيل الدخول");
+        route.push("/admin/allteams");
+      }
+      if (response.error) {
+        toast.error("حدث خطا قم باعاده المحاوله");
+      }
+    });
   };
   return (
     <form action={loginHandle} className="flex gap-2 flex-col">
+      {isPending && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
+          <div className="">loading...</div>
+        </div>
+      )}
       <div className="flex flex-col gap-2">
         <label htmlFor="email" className="">
           الاميل
@@ -53,7 +60,12 @@ export default function LoginFormAdmin() {
           </div>
         </div>
       </div>
-      <button className="btn lg">ادخل</button>
+      <button
+        disabled={isPending}
+        className={`btn sm  ${isPending && " opacity-40 cursor-not-allowed"}`}
+      >
+        {isPending ? "انتظر.." : "ادخل"}
+      </button>
     </form>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 
 function page() {
   return (
-    <div className="min-h-screen container mx-auto flex justify-center items-center">
+    <div className="min-h-[83vh] container mx-auto flex justify-center items-center">
       <div className="p-10 rounded-[20px] bg-[#292929] flex flex-col  gap-20 justify-center items-center">
         <div className="">
           {/* <Image src={"/"} alt="logo image" width={60} height={60} /> */}

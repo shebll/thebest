@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import RequestComponent from "../RequestComponent";
 import { acceptRequest } from "@/action/acceptRequest";
 import { declineRequest } from "@/action/declineRequest";
+import { toast } from "sonner";
 type props = {
   params: {
     requestId: string;
@@ -29,16 +30,26 @@ function RequestPage({ params: { requestId } }: props) {
   const handleAccept = async (id: string) => {
     const token = localStorage.getItem("token");
     if (token) {
-      console.log(id);
-      await acceptRequest(token, id);
+      const response = await acceptRequest(token, id);
+      if (response.success) {
+        toast.success("تم تنفيز الطلب");
+      }
+      if (response.error) {
+        toast.error("حدث خطا قم باعاده المحاوله");
+      }
     }
   };
 
   const handleDecline = async (id: string) => {
     const token = localStorage.getItem("token");
     if (token) {
-      console.log(id);
-      await declineRequest(token, id);
+      const response = await declineRequest(token, id);
+      if (response.success) {
+        toast.success("تم تنفيز الطلب");
+      }
+      if (response.error) {
+        toast.error("حدث خطا قم باعاده المحاوله");
+      }
     }
   };
 
