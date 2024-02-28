@@ -4,6 +4,7 @@ import { getCurrentLeague } from "@/action/getCurrentLeague";
 import { endingLeague } from "@/action/endingLeague";
 import { updateLeague } from "@/action/updateLeague";
 import { generateLeague } from "@/action/CreateLeague";
+import { toast } from "sonner";
 
 interface Team {
   name: string;
@@ -51,7 +52,9 @@ interface LeagueResponse {
   groups: GroupDetails[];
 }
 function Leagues() {
-  const [isPending, startTransition] = useTransition();
+  const [isPendingCreate, startTransitionCreate] = useTransition();
+  const [isPendingChange, startTransitionChange] = useTransition();
+  const [isPendingDelete, startTransitionDelete] = useTransition();
   const [newLeagueName, setNewLeagueName] = useState<string>("");
   const [createLeague, setCreateLeague] = useState<string>("");
   const [leagueData, setLeagueData] = useState<LeagueResponse | null>(null);
@@ -73,7 +76,15 @@ function Leagues() {
       const DeleteLeague = async () => {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await endingLeague(token, leagueId);
+          startTransitionDelete(async () => {
+            const response = await endingLeague(token, leagueId);
+            if (response.success) {
+              toast.success("تم مسح الدورة ");
+            }
+            if (response.error) {
+              toast.error("حدث خطا قم باعاده المحاوله");
+            }
+          });
         }
       };
       DeleteLeague();
@@ -87,7 +98,15 @@ function Leagues() {
       const updateLeagueFetch = async () => {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await updateLeague(token, leagueId, newName);
+          startTransitionChange(async () => {
+            const response = await updateLeague(token, leagueId, newName);
+            if (response.success) {
+              toast.success("تم تغير اسم الدورة ");
+            }
+            if (response.error) {
+              toast.error("حدث خطا قم باعاده المحاوله");
+            }
+          });
         }
       };
       updateLeagueFetch();
@@ -101,7 +120,15 @@ function Leagues() {
       const updateLeagueFetch = async () => {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await generateLeague(token, createLeague);
+          startTransitionCreate(async () => {
+            const response = await generateLeague(token, createLeague);
+            if (response.success) {
+              toast.success("تم انشاء دورة جديده");
+            }
+            if (response.error) {
+              toast.error("حدث خطا قم باعاده المحاوله");
+            }
+          });
         }
       };
       updateLeagueFetch();
@@ -111,7 +138,7 @@ function Leagues() {
   };
   return (
     <div className="container mx-auto px-4 py-8">
-      {isPending && (
+      {(isPendingDelete || isPendingChange || isPendingCreate) && (
         <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
           <div className="">loading...</div>
         </div>

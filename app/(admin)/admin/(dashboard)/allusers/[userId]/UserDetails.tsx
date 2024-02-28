@@ -10,13 +10,15 @@ function UserDetails({ userData }: { userData: UserDetails }) {
     console.log(userId);
     const token = localStorage.getItem("token");
     if (token) {
-      const response = await blockUser(token, userId);
-      if (response.success) {
-        toast.success("تم انشاء الفريق");
-      }
-      if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
-      }
+      startTransition(async () => {
+        const response = await blockUser(token, userId);
+        if (response.success) {
+          toast.success("تم حذر العضو ");
+        }
+        if (response.error) {
+          toast.error("حدث خطا قم باعاده المحاوله");
+        }
+      });
     }
   };
   return (
