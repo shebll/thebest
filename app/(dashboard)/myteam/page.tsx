@@ -1,13 +1,18 @@
 "use client";
 import { getTeam } from "@/action/getTeam";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 function Page() {
   const [myTeam, setMyTeam] = useState<ApiResponseTeam | null>();
+  const [role, setRole] = useState("");
+
   useEffect(() => {
     const getTeamData = async () => {
       const token = localStorage.getItem("token");
+      const role = localStorage.getItem("role");
+      if (role) setRole(role as string);
       if (token) {
         const response = await getTeam(token);
         localStorage.setItem("teamId", response.data.team._id);
@@ -77,7 +82,7 @@ function Page() {
         //     </tbody>
         //   </table>
         // </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center justify-between h-full">
           <div className="team-name">{myTeam.team.name}</div>
           <div>
             {myTeam.teamMembers.map((player, i) => (
@@ -85,20 +90,13 @@ function Page() {
                 key={player._id}
                 className="absolute flex flex-col justify-center items-center gap-1 w-fit player-card"
               >
-                <div className="">
+                <div className=" rounded-full ">
                   <Image
-                    src={player.image ? player.image.secure_url : "/image.png"}
-                    alt={`${player.name} photo`}
-                    width={70}
-                    height={70}
-                    className="block lg:hidden rounded-full shadow-md border-[2px] border-gray-200"
-                  />
-                  <Image
-                    src={player.image ? player.image.secure_url : "/image.png"}
+                    src={player.image ? player.image.secure_url : "/user.png"}
                     alt={`${player.name} photo`}
                     width={100}
                     height={100}
-                    className="hidden lg:block rounded-full shadow-md border-[2px] border-gray-200"
+                    className="rounded-full shadow-md border-[2px] border-gray-200 w-[70px] h-[70px]  lg:w-[100px] lg:h-[100px] object-cover"
                   />
                 </div>
                 <div className="">
@@ -107,6 +105,15 @@ function Page() {
               </div>
             ))}
           </div>
+          {role == "Leader" && (
+            <Link
+              href={"/payment"}
+              className="flex flex-col gap-1 justify-center items-center"
+            >
+              <p>قم بالدفع للدخول في الدوري</p>
+              <div className="btn sm">وسيله الدفع</div>
+            </Link>
+          )}
         </div>
       ) : (
         <div className="text-center">Loading...</div>

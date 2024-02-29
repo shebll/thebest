@@ -36,7 +36,7 @@ input {
 }
 /* buttons */
 .hero-card {
-  @apply p-4 lg:p-10 lg:px-20 rounded-[10px] flex flex-col gap-20 justify-center items-center w-fit lg:w-[1000px];
+  @apply p-4 lg:p-10 lg:px-20 rounded-[10px] flex flex-col gap-10 lg:gap-20 justify-center items-center w-fit lg:w-[1000px];
   /* background-image: url("/football-bg.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -56,16 +56,16 @@ input {
   -o-border-radius: 20px;
 }
 .player-card:nth-child(1) {
-  @apply bottom-[100px] right-[50px] lg:right-[150px];
+  @apply bottom-[120px] right-[50px] lg:right-[150px];
 }
 .player-card:nth-child(2) {
-  @apply bottom-[100px] left-[50px] lg:left-[150px];
+  @apply bottom-[120px] left-[50px] lg:left-[150px];
 }
 .player-card:nth-child(3) {
-  @apply top-[250px]  left-[50px] lg:left-[150px];
+  @apply top-[210px]  left-[50px] lg:left-[150px];
 }
 .player-card:nth-child(4) {
-  @apply top-[250px] right-[50px] lg:right-[150px];
+  @apply top-[210px] right-[50px] lg:right-[150px];
 }
 .player-card:nth-child(5) {
   top: 100px;

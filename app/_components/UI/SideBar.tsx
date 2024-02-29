@@ -30,6 +30,7 @@ export function SideBar() {
       </div>
       <div className="flex flex-col gap-4">
         <Link
+          onClick={() => setToggle(false)}
           href={"/myteam"}
           className={`px-14 py-2 ${
             pathName == "/myteam" ? "bg-[#c09238] text-white" : "bg-[#343434]"
@@ -40,16 +41,18 @@ export function SideBar() {
         {role == "Leader" && (
           <>
             <Link
-              href={"/mygroup"}
+              onClick={() => setToggle(false)}
+              href={"/editteam"}
               className={`px-14 py-2 ${
-                pathName == "/mygroup"
+                pathName == "/editteam"
                   ? "bg-[#c09238] text-white"
                   : "bg-[#343434]"
               } font-medium text-center text-lg rounded-[10px] w-full hover:bg-[#c09238] hover:text-white transition-all`}
             >
-              المجموعات
+              تعديل الفريق
             </Link>
             <Link
+              onClick={() => setToggle(false)}
               href={"/payment"}
               className={`px-14 py-2 ${
                 pathName == "/payment"
@@ -63,6 +66,7 @@ export function SideBar() {
         )}
 
         <Link
+          onClick={() => setToggle(false)}
           href={"/mymatches"}
           className={`px-14 py-2 ${
             pathName == "/mymatches"
@@ -73,12 +77,13 @@ export function SideBar() {
           المباريات
         </Link>
         <Link
-          href={"/editteam"}
+          onClick={() => setToggle(false)}
+          href={"/mygroup"}
           className={`px-14 py-2 ${
-            pathName == "/editteam" ? "bg-[#c09238] text-white" : "bg-[#343434]"
+            pathName == "/mygroup" ? "bg-[#c09238] text-white" : "bg-[#343434]"
           } font-medium text-center text-lg rounded-[10px] w-full hover:bg-[#c09238] hover:text-white transition-all`}
         >
-          تعديل الفريق
+          المجموعات
         </Link>
       </div>
     </div>

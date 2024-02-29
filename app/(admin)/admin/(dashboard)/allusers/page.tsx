@@ -117,7 +117,9 @@ function AllUsers() {
       );
     }
 
-    return <div className="flex justify-center mt-4">{pages}</div>;
+    return (
+      <div className="flex justify-center mt-4  gap-2 flex-wrap">{pages}</div>
+    );
   };
   return (
     <div>

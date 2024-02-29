@@ -54,43 +54,43 @@ function Page() {
       {myGroup ? (
         myGroup.success ? (
           <div className="">
-            <h1 className="text-3xl font-bold mb-4">Groups</h1>
+            <h1 className="text-3xl font-bold mb-4">مجموعتك</h1>
             <div className="">
               {myGroup.group.map((group) => (
                 <div key={group._id.group.id} className="mt-8 w-full">
                   <h2 className="text-xl font-semibold mb-4">
-                    Group {group._id.group.name}
+                    مجموعة {group._id.group.name}
                   </h2>
                   <div className="w-full overflow-auto ">
                     <table className="border-collapse border border-gray-200 mb-4">
                       <thead className="bg-gray-100">
                         <tr>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Team
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            الفريق
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Wins
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            فوز
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Losses
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            هزيمه
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Ties
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            تعادل
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Points
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            النقط
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Goals For
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            لع
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Goals Against
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            عليه
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Goals Difference
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            الفرق
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Order
+                          <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                            الترتيب
                           </th>
                         </tr>
                       </thead>

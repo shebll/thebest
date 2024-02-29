@@ -93,7 +93,7 @@ export default function GroupDetailPage({ params: { groupId } }: props) {
           formData.get("gameId") as string,
           formData
         );
-        if (response.success) {
+        if (response.data) {
           toast.success("تم تحديد نتيجه المبارة");
         }
         if (response.error) {

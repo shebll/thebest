@@ -9,11 +9,13 @@ function Page() {
   const [isPending, startTransition] = useTransition();
   const [teamId, setTeamId] = useState("");
   const [token, setToken] = useState("");
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const teamId = localStorage.getItem("teamId");
     const isSend = localStorage.getItem("isSend");
+    const isConfirmed = localStorage.getItem("isConfirmed");
 
     if (token) {
       setToken(token);
@@ -23,6 +25,9 @@ function Page() {
     }
     if (isSend) {
       setToggle(!!isSend);
+    }
+    if (isConfirmed) {
+      setIsConfirmed(!!isConfirmed);
     }
   }, []);
 
@@ -41,7 +46,7 @@ function Page() {
   };
 
   return (
-    <div className="flex justify-between items-start gap-10 p-4 lg:p-10">
+    <div className="flex flex-col lg:flex-row justify-between items-start gap-10 p-4 lg:p-10">
       {isPending && (
         <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
           <div className="">loading...</div>
@@ -58,10 +63,10 @@ function Page() {
         <div className="flex flex-col gap-6 items-start">
           <div className="flex flex-col gap-4">
             <p className="text-[18px] font-medium ">
-              قم بتحويل 200 علي هذا الرقم
+              قم بتحويل 500 علي هذا الرقم
             </p>
             <p className="text-[18px] font-medium bg-[#343434] px-10 py-2 text-[#B4B4B4] w-fit rounded-[10px] ">
-              01155992222
+            01066364269
             </p>
           </div>
 
@@ -103,35 +108,37 @@ function Page() {
         <div className="">
           <div className="flex flex-col gap-4">
             <div className="">
-              <h1 className="text-[22px] font-bold">الشروط لتسجيل الفريق</h1>
-              <p className="text-gray-300">
-                قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
-              </p>
+              <h1 className="text-[22px] font-bold">
+                الشروط والاحكام للمسابقه
+              </h1>
+              <p className="text-gray-300">قم بقراءة الشروط و الاحكام جيدا</p>
             </div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <p className="text-gray-300">
-                - قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                - جائزه ماليه للمركز الاول والمركز الثاني ومشاركه المركز الثالث
+                بدون رسوم الدوره التاليه
               </p>
               <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                - قيمة الاشتراك في البطولة ٥٠٠ جنيه (خمسمائة جنيه مصري فقط لا
+                غير)
               </p>
               <p className="text-gray-300">
-                - قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
-              </p>
-              <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
-              </p>
-              <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                - يتم تصعيد الأول و الثاني من كل مجموعة و سيتم استكمال البطولة
+                بنظام يتم الإعلان عنه بعد انتهاء الدورالأول.
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="hidden lg:block flex-1">
+      <div className="flex flex-col flex-1   gap-2">
         {toggle && (
-          <div className="p-10 bg-[#343434] rounded-[20px] flex flex-col gap-8 justify-center items-center font-bold">
+          <div className="p-6 bg-[#343434] rounded-[20px] flex flex-col gap-8 justify-center items-center font-bold">
             تم ارسال الوصل برجاء الانتظار
+          </div>
+        )}
+        {isConfirmed && (
+          <div className="p-6 bg-[#5d9ef3] rounded-[20px] flex flex-col gap-8 justify-center items-center font-bold">
+            تم قبول طلب وتم تفعيل فريقك في الدوري
           </div>
         )}
       </div>

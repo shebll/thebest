@@ -2,7 +2,7 @@
 
 export const declineRequest = async (token: string, requestId: string) => {
   const response = await fetch(
-    `https://the-best-football.onrender.com/request/accept/${requestId}`,
+    `https://the-best-football.onrender.com/request/decline/${requestId}`,
     {
       method: "PUT",
       headers: { Authorization: `Moo__${token}` },

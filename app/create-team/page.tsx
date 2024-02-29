@@ -13,7 +13,7 @@ export default function Page() {
   const createTeamHandle = async (formData: FormData) => {
     startTransition(async () => {
       const response = await createTeam(formData);
-      if (response.success) {
+      if (response.data) {
         setToggle(true);
         setLeaderCode(response.data.leaderCode);
         setMemberCode(response.data.memberCode);
@@ -55,14 +55,19 @@ export default function Page() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="city">المدينة</label>
-                  <input
+                  <select
                     required
-                    type="text"
                     id="city"
                     name="city"
-                    placeholder="اسم المدينة"
-                    className="rounded-[10px] py-2 px-4 text-[18px] outline-none"
-                  />
+                    className="rounded-[10px] py-2 px-4 text-[18px] outline-none  bg-[#343434]"
+                  >
+                    <option value="">اختر المدينة</option>
+                    <option value="التجمع">التجمع</option>
+                    <option value="مايو">مايو</option>
+                    <option value="المعادي">المعادي</option>
+                    <option value="حلوان">حلوان</option>
+                    <option value="حدائق حلوان">حدائق حلوان</option>
+                  </select>
                 </div>
                 <div className="flex gap-4 flex-col lg:flex-row items-end">
                   <div className="flex gap-2 flex-col">
@@ -103,7 +108,6 @@ export default function Page() {
                       />
                     </label>
                     <input
-                      required
                       type="file"
                       id="leaderImg"
                       name="leaderImg"
@@ -151,7 +155,6 @@ export default function Page() {
                       />
                     </label>
                     <input
-                      required
                       type="file"
                       id="memberOneImg"
                       name="memberOneImg"
@@ -197,12 +200,7 @@ export default function Page() {
                         height={20}
                       />
                     </label>
-                    <input
-                      required
-                      type="file"
-                      id="memberTwoImg"
-                      name="memberTwoImg"
-                    />
+                    <input type="file" id="memberTwoImg" name="memberTwoImg" />
                   </div>
                 </div>
                 <div className="flex gap-4 flex-col lg:flex-row items-end">
@@ -244,7 +242,6 @@ export default function Page() {
                       />
                     </label>
                     <input
-                      required
                       type="file"
                       id="memberThreeImg"
                       name="memberThreeImg"
@@ -291,7 +288,6 @@ export default function Page() {
                       />
                     </label>
                     <input
-                      required
                       type="file"
                       id="memberFourImg"
                       name="memberFourImg"
@@ -328,46 +324,63 @@ export default function Page() {
                 قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
               </p>
             </div>
-            <div className="flex flex-col gap-1">
+
+            <div className="flex flex-col gap-2">
               <p className="text-gray-300">
-                - قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                1-قائد الفريق هو المتحدث الرسمي للفريق لدى المنظمين.
               </p>
               <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                2-في حالة تأخر كامل أعضاء الفريق عن وقت بدأ المباره يعتبر الفريق
+                مهزوماً بنتيجه3/0.
               </p>
               <p className="text-gray-300">
-                - قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                3-في حاله وجود أي لاعب غير مسجل بالفريق يتم إقصاء الفريق ويخسر
+                3/0.
               </p>
               <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                ٥-يجب أن يحتوي الفريق على ٥لاعبين علي الموقع و٣ لاعيبه ورقي اذا
+                اراد الفريق للاشتراك بالدوري.
               </p>
               <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                ٦-يجب ألمحافظه على الأخلاق الرياضية داخل الملعب.
+              </p>
+              <p className="text-gray-300">
+                ٧-أي تلفظ بألفاظ غير لاقه على أي لاعب داخل الملعب يسبب فصل
+                اللاعب من الدوري نهائياً وسيكمل فريقه مشواره دون
+              </p>
+              <p className="text-gray-300">
+                ٨- يعتبر الفريق منسحبا و تلغي نتائجه في حالة تأخره عشرة دقائق عن
+                موعد المباراة. الا في حالة تقديمه ظرف تقبله اللجنة المنظمة فيتم
+                إعادة المباراة.{" "}
               </p>
             </div>
           </div>
-          <div className="">
+          <div className="flex flex-col gap-4">
             <div className="">
               <h1 className="text-[22px] font-bold">الشروط لتسجيل الفريق</h1>
               <p className="text-gray-300">
                 قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
               </p>
             </div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <p className="text-gray-300">
-                - قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                - يلتزم كل فريق بزي موحد و كذلك اللعب بالحذاء الكاوتش
               </p>
               <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                - زمن المباراة ٢٠ دقيقة علي شوطين و ذلك حتي الدور قبل النهائي و
+                النهائي يكون زمن المباراة ٣٠ دقيقة
+              </p>
+              <p className="text-gray-300">- التغيير مفتوح طوال زمن المباراة</p>
+              <p className="text-gray-300">
+                - الدور الأول دوري من دور واحد بين المجموعات
               </p>
               <p className="text-gray-300">
-                - قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                - يتم تصعيد الأول و الثاني من كل مجموعة و سيتم استكمال البطولة
+                بنظام يتم الإعلان عنه بعد انتهاء الدورالأول.
               </p>
               <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
-              </p>
-              <p className="text-gray-300">
-                -قم بقراءة الشروط و الاحكام جيدا قبل حفظ الفريق
+                - قيمة الاشتراك في البطولة ٥٠٠ جنيه (خمسمائة جنيه مصري فقط لا
+                غير)
               </p>
             </div>
           </div>

@@ -25,11 +25,16 @@ export default function LoginForm() {
   return (
     <form action={loginHandle} className="flex gap-2 flex-col">
       {isPending && (
-        <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center z-20">
           <div className="">loading...</div>
         </div>
       )}
-
+      <label
+        htmlFor=""
+        className=" text-[20px] font-semibold bg-black/70 backdrop-blur-sm w-fit py-1 px-4 rounded border"
+      >
+        ادخل الرمز الخاص بيك
+      </label>
       <div className="px-2 py-2 pr-10 rounded-[10px] flex gap-10 justify-between items-center bg-[#343434]">
         <div className="h-full">
           <input
@@ -52,9 +57,6 @@ export default function LoginForm() {
           {isPending ? "انتظر.." : "ادخل"}
         </button>
       </div>
-      <label htmlFor="" className=" text-[20px] font-semibold">
-        ادخل الرمز الخاص بيك
-      </label>
     </form>
   );
 }

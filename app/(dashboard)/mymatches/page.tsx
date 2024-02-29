@@ -90,7 +90,7 @@ function Page() {
                 <div className="flex gap-6">
                   <div className="">{game.score.teamA}</div>
                   <div className="">VS</div>
-                  <div className="">{game.score.teamA}</div>
+                  <div className="">{game.score.teamB}</div>
                 </div>
                 <div className="p-1 lg:px-4 lg:py-2  bg-blue-400 rounded">
                   المباره انتهت
