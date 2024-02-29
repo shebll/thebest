@@ -36,7 +36,7 @@ input {
 }
 /* buttons */
 .hero-card {
-  @apply p-4 lg:p-10 lg:px-20 rounded-[10px] flex flex-col gap-10 lg:gap-20 justify-center items-center w-fit lg:w-[1000px];
+  @apply p-4 lg:p-10 lg:px-20 rounded-[10px] flex flex-col gap-[13rem] justify-center items-center w-fit lg:w-[1000px];
   /* background-image: url("/football-bg.png");
   background-position: center;
   background-repeat: no-repeat;
