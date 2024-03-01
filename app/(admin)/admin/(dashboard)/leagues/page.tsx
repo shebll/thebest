@@ -137,7 +137,7 @@ function Leagues() {
     }
   };
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto lg:px-4 lg:py-8">
       {(isPendingDelete || isPendingChange || isPendingCreate) && (
         <div className="fixed inset-0 backdrop-blur-sm bg-black/25 top-0 left-0 flex justify-center items-center">
           <div className="">loading...</div>
@@ -146,135 +146,143 @@ function Leagues() {
       {leagueData ? (
         <div>
           {leagueData.success !== true ? (
-            <>
-              <h1 className="text-3xl font-bold mb-4">
-                Active League: {leagueData.league.name}
-              </h1>
-              <h1 className="text-3xl font-bold mb-4">
-                {leagueData.league.name}
-              </h1>
-              <div className="mb-8">
-                <p className="font-semibold">
-                  League ID: {leagueData.league._id}
-                </p>
-                <p className="font-semibold">
-                  Activated: {leagueData.league.isActivated ? "Yes" : "No"}
-                </p>
-                <p className="font-semibold">
-                  Created At: {leagueData.league.createdAt}
-                </p>
-                <p className="font-semibold">
-                  Updated At: {leagueData.league.updatedAt}
-                </p>
-              </div>
-              <div className="mb-8">
-                <input
-                  type="text"
-                  className="border border-gray-300 px-4 py-2 mr-4"
-                  placeholder="New League Name"
-                  value={newLeagueName}
-                  onChange={(e) => setNewLeagueName(e.target.value)}
-                />
-                <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                  onClick={() =>
-                    handleUpdateLeagueName(leagueData.league._id, newLeagueName)
-                  }
-                >
-                  Update League Name
-                </button>
-              </div>
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                onClick={() => handleEndingLeague(leagueData.league._id)}
-              >
-                End League
-              </button>
-              {leagueData.groups.map((group) => (
-                <div key={group._id.group.id} className="mt-8">
-                  <h2 className="text-xl font-semibold mb-4">
-                    Group {group._id.group.name}
-                  </h2>
-                  <table className="w-full border-collapse border border-gray-200 mb-4">
-                    <thead className="bg-gray-100">
-                      <tr>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Team
-                        </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Wins
-                        </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Losses
-                        </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Ties
-                        </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Points
-                        </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Goals For
-                        </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Goals Against
-                        </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Goals Difference
-                        </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Order
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {group.teams.map((team) => (
-                        <tr
-                          key={team.team.id}
-                          className="transition-colors duration-300"
-                        >
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.team.name}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.recordInfo.wins}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.recordInfo.losses}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.recordInfo.ties}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.recordInfo.points}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.recordInfo.goalsFor}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.recordInfo.goalsAgainst}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.recordInfo.goalsDifference}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {team.recordInfo.order}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <div className="mt-4">
-                    <a
-                      href={`/admin/leagues/group/${group._id.group.id}`}
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Group Details
-                    </a>
-                  </div>
+            <div className="flex flex-col gap-10">
+              <div className="">
+                <h1 className="text-3xl font-bold mb-4">
+                  Active League: {leagueData.league.name}
+                </h1>
+                <h1 className="text-3xl font-bold mb-4">
+                  {leagueData.league.name}
+                </h1>
+                <div className="mb-8">
+                  <p className="font-semibold">
+                    League ID: {leagueData.league._id}
+                  </p>
+                  <p className="font-semibold">
+                    Activated: {leagueData.league.isActivated ? "Yes" : "No"}
+                  </p>
+                  <p className="font-semibold">
+                    Created At: {leagueData.league.createdAt}
+                  </p>
+                  <p className="font-semibold">
+                    Updated At: {leagueData.league.updatedAt}
+                  </p>
                 </div>
-              ))}
-            </>
+                <div className="mb-8">
+                  <input
+                    type="text"
+                    className="border border-gray-300 px-4 py-2 mr-4"
+                    placeholder="New League Name"
+                    value={newLeagueName}
+                    onChange={(e) => setNewLeagueName(e.target.value)}
+                  />
+                  <button
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    onClick={() =>
+                      handleUpdateLeagueName(
+                        leagueData.league._id,
+                        newLeagueName
+                      )
+                    }
+                  >
+                    Update League Name
+                  </button>
+                </div>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                  onClick={() => handleEndingLeague(leagueData.league._id)}
+                >
+                  End League
+                </button>
+                {leagueData.groups.map((group) => (
+                  <div
+                    key={group._id.group.id}
+                    className="mt-8 w-full overflow-x-auto"
+                  >
+                    <h2 className="text-xl font-semibold mb-4">
+                      Group {group._id.group.name}
+                    </h2>
+                    <table className=" border-collapse border border-gray-200 mb-4 ">
+                      <thead className="bg-gray-100">
+                        <tr>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Team
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Wins
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Losses
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Ties
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Points
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Goals For
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Goals Against
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Goals Difference
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Order
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200">
+                        {group.teams.map((team) => (
+                          <tr
+                            key={team.team.id}
+                            className="transition-colors duration-300"
+                          >
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.team.name}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.recordInfo.wins}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.recordInfo.losses}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.recordInfo.ties}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.recordInfo.points}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.recordInfo.goalsFor}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.recordInfo.goalsAgainst}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.recordInfo.goalsDifference}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {team.recordInfo.order}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <div className="mt-4">
+                      <a
+                        href={`/admin/leagues/group/${group._id.group.id}`}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Group Details
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           ) : (
             <div className="text-center">
               <p className="text-lg font-semibold mb-4">No active league</p>

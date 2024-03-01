@@ -1,12 +1,14 @@
 "use server";
 
-export const blockUser = async (token: string, userId: string) => {
+export const getQualifyingGames = async (
+  token: string,
+  qualifyingId: string
+) => {
   const response = await fetch(
-    `https://the-best-football.onrender.com/user/block/${userId}`,
+    `https://the-best-football.onrender.com/qualifying/get/${qualifyingId}`,
     {
-      method: "PUT",
+      method: "GET",
       headers: { Authorization: `Moo__${token}` },
-      next: { tags: ["users"] },
     }
   );
   const responseData = await response.json();

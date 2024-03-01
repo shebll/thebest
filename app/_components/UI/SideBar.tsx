@@ -21,9 +21,11 @@ export function SideBar() {
       } absolute top-0 left-0 lg:relative lg:flex  w-screen lg:w-[350px] z-20 rounded-[0px] p-10 lg:rounded-[20px] bg-[#181818] flex-col gap-10`}
     >
       <div className="flex lg:hidden justify-between">
-        <h1 className="text-[18px] lg:text-[32px] font-bold text-white">
-          THE BEST
-        </h1>
+        <Link href={"/"}>
+          <h1 className="text-[28px] lg:text-[32px] font-bold text-white">
+            THE BEST
+          </h1>
+        </Link>
         <div onClick={() => setToggle(false)} className="cursor-pointer">
           <Image src={"/close.png"} alt="close image" width={30} height={30} />
         </div>

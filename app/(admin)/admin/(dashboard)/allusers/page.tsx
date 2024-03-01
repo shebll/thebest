@@ -26,7 +26,7 @@ function AllUsers() {
   };
 
   const UserTable = ({ users }: { users: User[] }) => (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto w-full">
       <table className="table-auto min-w-full divide-y divide-gray-200">
         <thead className="bg-[#111111]">
           <tr>
@@ -122,7 +122,7 @@ function AllUsers() {
     );
   };
   return (
-    <div>
+    <div className="w-full">
       {allUsers ? (
         <>
           <UserTable users={allUsers.users} />

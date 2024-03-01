@@ -2,12 +2,13 @@
 import { afterGame } from "@/action/afterGame";
 import { beforeGame } from "@/action/beforeGame";
 import { getGroupGames } from "@/action/getGroupGames";
+import { getQualifyingGames } from "@/action/getQualifyingGames";
 import Link from "next/link";
 import React, { useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
 type props = {
   params: {
-    groupId: string;
+    qualifyingId: string;
   };
 };
 
@@ -45,7 +46,7 @@ interface GamesResponse {
   games: Game[];
 }
 
-export default function GroupDetailPage({ params: { groupId } }: props) {
+export default function GameDetailPage({ params: { qualifyingId } }: props) {
   const [isPendingInfo, startTransitionInfo] = useTransition();
   const [isPendingScore, startTransitionScore] = useTransition();
   const [gamesData, setGamesData] = useState<GamesResponse | null>(null);
@@ -55,7 +56,7 @@ export default function GroupDetailPage({ params: { groupId } }: props) {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await getGroupGames(token, groupId);
+          const response = await getQualifyingGames(token, qualifyingId);
           setGamesData(response.data);
         }
       } catch (error) {
@@ -64,7 +65,7 @@ export default function GroupDetailPage({ params: { groupId } }: props) {
     };
 
     fetchData();
-  }, [groupId]);
+  }, [qualifyingId]);
 
   const handleInfoGameSubmit = async (formData: FormData) => {
     const token = localStorage.getItem("token");

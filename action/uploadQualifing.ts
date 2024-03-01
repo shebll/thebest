@@ -1,12 +1,16 @@
 "use server";
 
-export const blockUser = async (token: string, userId: string) => {
+export const uploadQualifing = async (
+  token: string,
+  qualifyingId: string,
+  formData: FormData
+) => {
   const response = await fetch(
-    `https://the-best-football.onrender.com/user/block/${userId}`,
+    `https://the-best-football.onrender.com/qualifying/uploadImage/${qualifyingId}`,
     {
       method: "PUT",
+      body: formData,
       headers: { Authorization: `Moo__${token}` },
-      next: { tags: ["users"] },
     }
   );
   const responseData = await response.json();
@@ -14,6 +18,6 @@ export const blockUser = async (token: string, userId: string) => {
   if (responseData.success === false) {
     return { error: responseData.message };
   } else {
-    return { success: responseData.message, data: responseData };
+    return { success: responseData.success };
   }
 };

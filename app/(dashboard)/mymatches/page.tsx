@@ -121,7 +121,12 @@ function Page() {
             </div>
           </div>
         ) : (
-          <div>no data yet</div>
+          <div>
+            <h1 className="text-3xl font-bold mb-4">مبارياتك</h1>
+            <p className="text-lg font-medium">
+              لم يتم انشاء الدوري بعد ,انتظر حتي يتم بدء المسابقه
+            </p>
+          </div>
         )
       ) : (
         <div className="text-center">Loading...</div>

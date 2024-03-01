@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const TeamDetails = ({ teamData }: { teamData: TeamDetailsResponse }) => {
@@ -94,25 +95,24 @@ const TeamDetails = ({ teamData }: { teamData: TeamDetailsResponse }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
           {teamMembers.map((member) => (
-            <div
-              key={member._id}
-              className="bg-[#111111] shadow-md rounded-lg overflow-hidden"
-            >
-              {member.image && (
-                <Image
-                  src={member.image.secure_url}
-                  alt={member.name}
-                  width={100}
-                  height={100}
-                  className="w-full h-56 object-cover"
-                />
-              )}
-              <div className="p-4">
-                <h2 className="text-xl font-semibold mb-2">{member.name}</h2>
-                <p className="text-gray-200 mb-4">{member.role}</p>
-                <p className="text-gray-200 mb-4">{member.phone}</p>
+            <Link key={member._id} href={`/admin/allusers/${member._id}`}>
+              <div className="bg-[#111111] hover:bg-[#292929] shadow-md rounded-lg overflow-hidden transition-all">
+                {member.image && (
+                  <Image
+                    src={member.image.secure_url}
+                    alt={member.name}
+                    width={100}
+                    height={100}
+                    className="w-full h-56 object-cover"
+                  />
+                )}
+                <div className="p-4">
+                  <h2 className="text-xl font-semibold mb-2">{member.name}</h2>
+                  <p className="text-gray-200 mb-4">{member.role}</p>
+                  <p className="text-gray-200 mb-4">{member.phone}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
