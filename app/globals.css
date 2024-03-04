@@ -13,7 +13,7 @@ body {
   background-color: #111111;
   color: white;
   min-height: 100vh;
-  direction: rtl;
+  /* direction: rtl; */
 }
 input[type="file"] {
   display: none;
