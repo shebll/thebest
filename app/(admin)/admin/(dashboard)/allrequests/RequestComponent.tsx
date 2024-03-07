@@ -5,6 +5,7 @@ type props = {
   request: Request;
   onAccept: (id: string) => void;
   onDecline: (id: string) => void;
+  onWait: (id: string) => void;
 };
 import React from "react";
 
@@ -12,9 +13,11 @@ export default function RequestComponent({
   request,
   onAccept,
   onDecline,
+  onWait,
 }: props) {
   const [isPendingAccepting, startTransitionAccepting] = useTransition();
   const [isPendingDeclining, startTransitionDeclining] = useTransition();
+  const [isPendingWait, startTransitionWait] = useTransition();
 
   const handleAccept = () => {
     startTransitionAccepting(async () => {
@@ -25,6 +28,11 @@ export default function RequestComponent({
   const handleDecline = () => {
     startTransitionDeclining(async () => {
       onDecline(request._id);
+    });
+  };
+  const handleWaited = () => {
+    startTransitionDeclining(async () => {
+      onWait(request._id);
     });
   };
 
@@ -56,9 +64,16 @@ export default function RequestComponent({
         <button
           onClick={handleDecline}
           disabled={isPendingDeclining}
-          className="bg-red-500 hover:bg-red-700 text-[#11111] font-bold py-2 px-4 rounded"
+          className="bg-red-500 hover:bg-red-700 text-[#11111] font-bold py-2 px-4 rounded mr-2"
         >
           {isPendingDeclining ? "Declining..." : "Decline"}
+        </button>
+        <button
+          onClick={handleWaited}
+          disabled={isPendingWait}
+          className="bg-green-500 hover:bg-green-700 text-[#11111] font-bold py-2 px-4 rounded"
+        >
+          {isPendingWait ? "waiting..." : "Wait"}
         </button>
       </div>
     </div>

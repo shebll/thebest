@@ -5,6 +5,7 @@ import RequestComponent from "../RequestComponent";
 import { acceptRequest } from "@/action/acceptRequest";
 import { declineRequest } from "@/action/declineRequest";
 import { toast } from "sonner";
+import { waitRequest } from "@/action/waitRequest";
 type props = {
   params: {
     requestId: string;
@@ -52,6 +53,18 @@ function RequestPage({ params: { requestId } }: props) {
       }
     }
   };
+  const handleWaited = async (id: string) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const response = await waitRequest(token, id);
+      if (response.success) {
+        toast.success("تم تنفيز الطلب");
+      }
+      if (response.error) {
+        toast.error("حدث خطا قم باعاده المحاوله");
+      }
+    }
+  };
 
   return (
     <div className="">
@@ -64,6 +77,7 @@ function RequestPage({ params: { requestId } }: props) {
               request={request.request}
               onAccept={handleAccept}
               onDecline={handleDecline}
+              onWait={handleWaited}
             />
           )}
         </div>

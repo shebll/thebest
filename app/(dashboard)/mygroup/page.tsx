@@ -19,6 +19,7 @@ interface Qualifying {
 }
 
 interface QualifyingsResponse {
+  success: boolean;
   message: boolean;
   qualifings: Qualifying[];
 }
@@ -76,7 +77,7 @@ function Page() {
 
   return (
     <div className="container mx-auto p-4 lg:px-4 lg:py-8 w-full">
-      {myQualifyings ? (
+      {myQualifyings?.success ? (
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">
             <h1 className="text-lg lg:text-2xl font-semibold">

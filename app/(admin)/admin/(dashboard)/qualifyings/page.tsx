@@ -23,6 +23,7 @@ interface Qualifying {
 }
 
 interface QualifyingsResponse {
+  success: boolean;
   message: boolean;
   qualifings: Qualifying[];
 }
@@ -99,74 +100,81 @@ function Leagues() {
         </button>
       </div>
       {myQualifyings ? (
-        <div className="bg-[#121212] text-white rounded-[10px]">
-          <div className="container mx-auto p-4">
-            {myQualifyings.qualifings.map((qualifying) => (
-              <div
-                key={qualifying._id}
-                className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 border border-gray-700 rounded-lg my-4"
-              >
-                <Link href={`qualifyings/${qualifying._id}`} className="block">
-                  <Image
-                    src={
-                      qualifying.image
-                        ? qualifying.image.secure_url
-                        : "/placeholder.png"
-                    }
-                    alt="Qualifying Round"
-                    width={600}
-                    height={600}
-                    className="object-cover w-full md:w-48 rounded-md"
-                  />
-                </Link>
-                <div className="flex-grow">
-                  <h3 className="text-xl font-bold mb-2">
-                    Round: {qualifying.round}
-                  </h3>
-                  <p>League ID: {qualifying.leagueId}</p>
-                  <p>Created At: {qualifying.createdAt}</p>
-                  <p>Updated At: {qualifying.updatedAt}</p>
-                  <p>Winners: {qualifying.winners.length}</p>
-                  <p>Waiting: {qualifying.waiting.length}</p>
-                </div>
-                <div className=" flex flex-col gap-6 items-center">
+        myQualifyings.success ? (
+          <div className="bg-[#121212] text-white rounded-[10px]">
+            <div className="container mx-auto p-4">
+              {myQualifyings.qualifings.map((qualifying) => (
+                <div
+                  key={qualifying._id}
+                  className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 border border-gray-700 rounded-lg my-4"
+                >
                   <Link
                     href={`qualifyings/${qualifying._id}`}
-                    className="text-blue-400 hover:text-blue-600 transition duration-300"
+                    className="block"
                   >
-                    View Details
+                    <Image
+                      src={
+                        qualifying.image
+                          ? qualifying.image.secure_url
+                          : "/placeholder.png"
+                      }
+                      alt="Qualifying Round"
+                      width={600}
+                      height={600}
+                      className="object-cover w-full md:w-48 rounded-md"
+                    />
                   </Link>
-                  <form
-                    action={handleUploadQualifing}
-                    className="flex flex-col gap-2 items-center "
-                  >
-                    <h1>put image for this Qualifying</h1>
-                    <label
-                      htmlFor={qualifying._id}
-                      className=" p-2 bg-gray-500 rounded-sm cursor-pointer"
+                  <div className="flex-grow">
+                    <h3 className="text-xl font-bold mb-2">
+                      Round: {qualifying.round}
+                    </h3>
+                    <p>League ID: {qualifying.leagueId}</p>
+                    <p>Created At: {qualifying.createdAt}</p>
+                    <p>Updated At: {qualifying.updatedAt}</p>
+                    <p>Winners: {qualifying.winners.length}</p>
+                    <p>Waiting: {qualifying.waiting.length}</p>
+                  </div>
+                  <div className=" flex flex-col gap-6 items-center">
+                    <Link
+                      href={`qualifyings/${qualifying._id}`}
+                      className="text-blue-400 hover:text-blue-600 transition duration-300"
                     >
-                      chose image
-                    </label>
-                    <input
-                      id={qualifying._id}
-                      name="image"
-                      type="file"
-                      required
-                    />
-                    <input
-                      type="text"
-                      id="id"
-                      name="id"
-                      value={qualifying._id}
-                      className="hidden"
-                    />
-                    <button className="btn sm">upload</button>
-                  </form>
+                      View Details
+                    </Link>
+                    <form
+                      action={handleUploadQualifing}
+                      className="flex flex-col gap-2 items-center "
+                    >
+                      <h1>put image for this Qualifying</h1>
+                      <label
+                        htmlFor={qualifying._id}
+                        className=" p-2 bg-gray-500 rounded-sm cursor-pointer"
+                      >
+                        chose image
+                      </label>
+                      <input
+                        id={qualifying._id}
+                        name="image"
+                        type="file"
+                        required
+                      />
+                      <input
+                        type="text"
+                        id="id"
+                        name="id"
+                        value={qualifying._id}
+                        className="hidden"
+                      />
+                      <button className="btn sm">upload</button>
+                    </form>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div> لا يوجد دوري شغال حاليا يجب انشاء دورة</div>
+        )
       ) : (
         <div className="text-center">Loading...</div>
       )}

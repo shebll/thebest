@@ -116,6 +116,11 @@ function Leagues() {
   };
 
   const handleCreateLeague = async () => {
+    if (!createLeague) {
+      toast.error("قم بادخال الاسم");
+
+      return;
+    }
     try {
       const updateLeagueFetch = async () => {
         const token = localStorage.getItem("token");
@@ -145,7 +150,7 @@ function Leagues() {
       )}
       {leagueData ? (
         <div>
-          {leagueData.success !== true ? (
+          {leagueData.success ? (
             <div className="flex flex-col gap-10">
               <div className="">
                 <h1 className="text-3xl font-bold mb-4">
@@ -285,11 +290,14 @@ function Leagues() {
             </div>
           ) : (
             <div className="text-center">
-              <p className="text-lg font-semibold mb-4">No active league</p>
+              <p className="text-lg font-semibold mb-4">
+                لا يوجد دوري شغال حاليا يجب انشاء دورة
+              </p>
               <input
                 type="text"
                 className="border border-gray-300 px-4 py-2 mr-4"
                 placeholder="New League Name"
+                required
                 value={createLeague}
                 onChange={(e) => setCreateLeague(e.target.value)}
               />

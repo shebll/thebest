@@ -140,9 +140,37 @@ function AllRequests() {
     </div>
   );
   const Pagination = () => {
+    const maxPageVisible = 5;
+    let startPage = Math.max(currentPage - 2, 1);
+    let endPage = startPage + maxPageVisible - 1;
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(endPage - maxPageVisible + 1, 1);
+    }
+
     const pages = [];
 
-    for (let i = 1; i <= totalPages; i++) {
+    if (startPage > 1) {
+      pages.push(
+        <button
+          key={1}
+          className="mx-1 px-3 py-1 rounded-lg bg-gray-200 text-gray-700"
+          onClick={() => handlePageChange(1)}
+        >
+          1
+        </button>
+      );
+      if (startPage > 2) {
+        pages.push(
+          <span key="start-ellipsis" className="px-2 py-1">
+            ...
+          </span>
+        );
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
       pages.push(
         <button
           key={i}
@@ -158,7 +186,28 @@ function AllRequests() {
       );
     }
 
-    return <div className="flex justify-center mt-4">{pages}</div>;
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        pages.push(
+          <span key="end-ellipsis" className="px-2 py-1">
+            ...
+          </span>
+        );
+      }
+      pages.push(
+        <button
+          key={totalPages}
+          className="mx-1 px-3 py-1 rounded-lg bg-gray-200 text-gray-700"
+          onClick={() => handlePageChange(totalPages)}
+        >
+          {totalPages}
+        </button>
+      );
+    }
+
+    return (
+      <div className="flex justify-center mt-4 gap-2 flex-wrap">{pages}</div>
+    );
   };
 
   return (
