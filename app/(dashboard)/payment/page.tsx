@@ -63,10 +63,10 @@ function Page() {
         <div className="flex flex-col gap-6 items-start">
           <div className="flex flex-col gap-4">
             <p className="text-[18px] font-medium ">
-              قم بتحويل 500 علي هذا الرقم
+              قم بتحويل 600 علي هذا الرقم
             </p>
             <p className="text-[18px] font-medium bg-[#343434] px-10 py-2 text-[#B4B4B4] w-fit rounded-[10px] ">
-            01066364269
+              01066364269
             </p>
           </div>
 
