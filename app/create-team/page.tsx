@@ -82,7 +82,9 @@ export default function Page() {
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
-                    <label htmlFor="teamMembers[0][phone]">رقم القائد </label>
+                    <label htmlFor="teamMembers[0][phone]">
+                      رقم تيلفون القائد{" "}
+                    </label>
                     <input
                       pattern="01[0125][0-9]{8}"
                       maxLength={11}
@@ -129,7 +131,9 @@ export default function Page() {
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
-                    <label htmlFor="teamMembers[1][phone]">رقم اللاعب 1</label>
+                    <label htmlFor="teamMembers[1][phone]">
+                      رقم تيلفون اللاعب 1
+                    </label>
                     <input
                       pattern="01[0125][0-9]{8}"
                       maxLength={11}
@@ -175,7 +179,9 @@ export default function Page() {
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
-                    <label htmlFor="teamMembers[2][phone]">رقم اللاعب 2</label>
+                    <label htmlFor="teamMembers[2][phone]">
+                      رقم تيلفون اللاعب 2
+                    </label>
                     <input
                       required
                       pattern="01[0125][0-9]{8}"
@@ -216,7 +222,9 @@ export default function Page() {
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
-                    <label htmlFor="teamMembers[3][phone]">رقم اللاعب 3</label>
+                    <label htmlFor="teamMembers[3][phone]">
+                      رقم تيلفون اللاعب 3
+                    </label>
                     <input
                       pattern="01[0125][0-9]{8}"
                       maxLength={11}
@@ -262,7 +270,9 @@ export default function Page() {
                     />
                   </div>
                   <div className="flex gap-2 flex-col">
-                    <label htmlFor="teamMembers[4][phone]">رقم اللاعب 4</label>
+                    <label htmlFor="teamMembers[4][phone]">
+                      رقم تيلفون اللاعب 4
+                    </label>
                     <input
                       required
                       title="الرجاء إدخال رقم هاتف مصري صحيح يبدأ بـ 011 أو 012 أو 010 أو 015"
@@ -379,7 +389,7 @@ export default function Page() {
                 بنظام يتم الإعلان عنه بعد انتهاء الدورالأول.
               </p>
               <p className="text-gray-300">
-                - قيمة الاشتراك في البطولة ٥٠٠ جنيه (خمسمائة جنيه مصري فقط لا
+                - قيمة الاشتراك في البطولة ٦٠٠ جنيه (خمسمائة جنيه مصري فقط لا
                 غير)
               </p>
             </div>

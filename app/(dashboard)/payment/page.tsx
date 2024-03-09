@@ -24,10 +24,10 @@ function Page() {
       setTeamId(teamId);
     }
     if (isSend) {
-      setToggle(!!isSend);
+      setToggle(isSend == undefined ? false : true);
     }
     if (isConfirmed) {
-      setIsConfirmed(!!isConfirmed);
+      setIsConfirmed(isConfirmed ? false : true);
     }
   }, []);
 

@@ -37,7 +37,9 @@ function Leagues() {
       const token = localStorage.getItem("token");
       if (token) {
         const response = await getQualifying(token);
-        setMyQualifyings(response.data);
+        if (response.data) {
+          setMyQualifyings(response.data);
+        }
       }
     };
     fetchData();
@@ -176,7 +178,7 @@ function Leagues() {
           <div> لا يوجد دوري شغال حاليا يجب انشاء دورة</div>
         )
       ) : (
-        <div className="text-center">Loading...</div>
+        <div> لا يوجد دوري شغال حاليا يجب انشاء دورة</div>
       )}
     </div>
   );

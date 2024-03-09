@@ -78,7 +78,7 @@ function Leagues() {
         if (token) {
           startTransitionDelete(async () => {
             const response = await endingLeague(token, leagueId);
-            if (response.success) {
+            if (response.data) {
               toast.success("تم مسح الدورة ");
             }
             if (response.error) {
@@ -127,7 +127,7 @@ function Leagues() {
         if (token) {
           startTransitionCreate(async () => {
             const response = await generateLeague(token, createLeague);
-            if (response.success) {
+            if (response.data) {
               toast.success("تم انشاء دورة جديده");
             }
             if (response.error) {

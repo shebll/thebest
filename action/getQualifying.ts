@@ -11,7 +11,7 @@ export const getQualifying = async (token: string) => {
   const responseData = await response.json();
   console.log(responseData);
   if (responseData.success === false) {
-    return { error: responseData.message, data: responseData };
+    return { error: responseData.message };
   } else {
     return { success: responseData.message, data: responseData };
   }
