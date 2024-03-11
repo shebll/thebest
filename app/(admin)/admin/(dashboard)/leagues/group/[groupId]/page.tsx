@@ -79,7 +79,7 @@ export default function GroupDetailPage({ params: { groupId } }: props) {
           toast.success("تم تحديد المبارة");
         }
         if (response.error) {
-          toast.error("حدث خطا قم باعاده المحاوله");
+          toast.error(response.error);
         }
       });
     }
@@ -98,7 +98,7 @@ export default function GroupDetailPage({ params: { groupId } }: props) {
           toast.success("تم تحديد نتيجه المبارة");
         }
         if (response.error) {
-          toast.error("حدث خطا قم باعاده المحاوله");
+          toast.error(response.error);
         }
       });
     }

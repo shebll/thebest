@@ -16,7 +16,7 @@ function UserDetails({ userData }: { userData: UserDetails }) {
           toast.success("تم حذر العضو ");
         }
         if (response.error) {
-          toast.error("حدث خطا قم باعاده المحاوله");
+          toast.error(response.error);
         }
       });
     }

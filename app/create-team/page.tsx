@@ -20,7 +20,7 @@ export default function Page() {
         toast.success("تم انشاء الفريق");
       }
       if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
+        toast.error(response.error);
       }
     });
   };

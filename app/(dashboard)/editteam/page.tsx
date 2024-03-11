@@ -36,7 +36,7 @@ function Page() {
             toast.success("تم تعديل عضو الفريق");
           }
           if (response.error) {
-            toast.error("حدث خطا قم باعاده المحاوله");
+            toast.error(response.error);
           }
         });
       }

@@ -80,7 +80,7 @@ export default function GameDetailPage({ params: { qualifyingId } }: props) {
           toast.success("تم تحديد المبارة");
         }
         if (response.error) {
-          toast.error("حدث خطا قم باعاده المحاوله");
+          toast.error(response.error);
         }
       });
     }
@@ -99,7 +99,7 @@ export default function GameDetailPage({ params: { qualifyingId } }: props) {
           toast.success("تم تحديد نتيجه المبارة");
         }
         if (response.error) {
-          toast.error("حدث خطا قم باعاده المحاوله");
+          toast.error(response.error);
         }
       });
     }

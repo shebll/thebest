@@ -36,7 +36,7 @@ function RequestPage({ params: { requestId } }: props) {
         toast.success("تم تنفيز الطلب");
       }
       if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
+        toast.error(response.error);
       }
     }
   };
@@ -49,7 +49,7 @@ function RequestPage({ params: { requestId } }: props) {
         toast.success("تم تنفيز الطلب");
       }
       if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
+        toast.error(response.error);
       }
     }
   };
@@ -61,7 +61,7 @@ function RequestPage({ params: { requestId } }: props) {
         toast.success("تم تنفيز الطلب");
       }
       if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
+        toast.error(response.error);
       }
     }
   };

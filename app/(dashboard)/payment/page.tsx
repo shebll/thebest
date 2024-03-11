@@ -40,7 +40,7 @@ function Page() {
         setToggle(true);
       }
       if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
+        toast.error(response.error);
       }
     });
   };

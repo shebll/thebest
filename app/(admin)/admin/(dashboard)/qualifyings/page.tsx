@@ -56,7 +56,7 @@ function Leagues() {
               toast.success("تم انشاء دورة جديده");
             }
             if (response.error) {
-              toast.error("حدث خطا قم باعاده المحاوله");
+              toast.error(response.error);
             }
           });
         }
@@ -79,7 +79,7 @@ function Leagues() {
               toast.success("تم وضع صورة الدور");
             }
             if (response.error) {
-              toast.error("حدث خطا قم باعاده المحاوله");
+              toast.error(response.error);
             }
           });
         }
