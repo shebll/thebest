@@ -35,7 +35,7 @@ function Page() {
     startTransition(async () => {
       const response = await payment(formData, teamId, token);
       if (response.success) {
-        toast.success("تم ارسال الوصل انتظر قبول الطلب");
+        toast.success(".تم ارسال الوصل انتظر قبول الطلب");
         localStorage.setItem("isSend", "true");
         setToggle(true);
       }
