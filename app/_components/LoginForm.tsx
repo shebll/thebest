@@ -17,7 +17,7 @@ export default function LoginForm() {
         route.push("/myteam");
       }
       if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
+        toast.error(response.error);
       }
     });
   };

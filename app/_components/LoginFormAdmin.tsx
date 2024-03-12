@@ -17,7 +17,7 @@ export default function LoginFormAdmin() {
         route.push("/admin/allteams");
       }
       if (response.error) {
-        toast.error("حدث خطا قم باعاده المحاوله");
+        toast.error(response.error);
       }
     });
   };
