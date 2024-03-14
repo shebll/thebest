@@ -20,7 +20,7 @@ export default function Page() {
         toast.success("تم انشاء الفريق");
       }
       if (response.error) {
-        toast.error(response.error);
+        toast.error("حدث خطا خلال التسجيل");
       }
     });
   };
@@ -111,6 +111,7 @@ export default function Page() {
                     </label>
                     <input
                       type="file"
+                      required
                       id="leaderImg"
                       name="leaderImg"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
@@ -160,6 +161,7 @@ export default function Page() {
                     </label>
                     <input
                       type="file"
+                      required
                       id="memberOneImg"
                       name="memberOneImg"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
@@ -206,7 +208,12 @@ export default function Page() {
                         height={20}
                       />
                     </label>
-                    <input type="file" id="memberTwoImg" name="memberTwoImg" />
+                    <input
+                      type="file"
+                      required
+                      id="memberTwoImg"
+                      name="memberTwoImg"
+                    />
                   </div>
                 </div>
                 <div className="flex gap-4 flex-col lg:flex-row items-end">
@@ -251,6 +258,7 @@ export default function Page() {
                     </label>
                     <input
                       type="file"
+                      required
                       id="memberThreeImg"
                       name="memberThreeImg"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
@@ -299,6 +307,7 @@ export default function Page() {
                     </label>
                     <input
                       type="file"
+                      required
                       id="memberFourImg"
                       name="memberFourImg"
                       className=" rounded-[10px] py-2 px-4 text-[18px] outline-none"
