@@ -85,7 +85,7 @@ function Page() {
     <div className="container mx-auto p-4 lg:px-4 lg:py-8 w-full">
       {!loading ? (
         <div className="">
-          {myQualifyings?.qualifings.length !== 0 ? (
+          {myQualifyings && myQualifyings.qualifings.length !== 0 && (
             <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-4">
                 <h1 className="text-lg lg:text-2xl font-semibold">
@@ -111,8 +111,8 @@ function Page() {
                 ))}
               </div>
             </div>
-          ) : (
-            myGroup &&
+          )}
+          {myGroup &&
             (myGroup.success ? (
               <>
                 <div className="">
@@ -206,8 +206,7 @@ function Page() {
                   لم يتم انشاء الدوري بعد ,انتظر حتي يتم بدء المسابقه
                 </p>
               </div>
-            ))
-          )}
+            ))}
         </div>
       ) : (
         <div className="text-center">Loading...</div>
