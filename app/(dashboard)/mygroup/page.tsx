@@ -58,6 +58,7 @@ interface BackendResponse {
   group: Group[];
 }
 function Page() {
+  const [loading, setLoading] = useState(true);
   const [myQualifyings, setMyQualifyings] =
     useState<QualifyingsResponse | null>();
 
@@ -69,8 +70,11 @@ function Page() {
         const response = await getGroup(token);
         const responseQualifyin = await getQualifying(token);
         if (responseQualifyin.data) {
+          setLoading(false);
           setMyQualifyings(responseQualifyin.data);
         }
+        setLoading(false);
+
         setMyGroup(response.data);
       }
     };
@@ -79,129 +83,132 @@ function Page() {
 
   return (
     <div className="container mx-auto p-4 lg:px-4 lg:py-8 w-full">
-      {myQualifyings ? (
-        myQualifyings.message && (
-          <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-4">
-              <h1 className="text-lg lg:text-2xl font-semibold">
-                الادوار الاقصائيه
-              </h1>
-              <p>جميع الادوار</p>
-            </div>
-            <div className="">
-              {myQualifyings.qualifings.map((qualifing) => (
-                <div key={qualifing._id}>
-                  <div className="flex flex-col gap-4">
-                    <h1 className="text-lg font-semibold">
-                      الدور {qualifing.round}
-                    </h1>
-                    <Image
-                      src={qualifing.image.secure_url}
-                      alt={qualifing.image.public_id}
-                      width={600}
-                      height={300}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )
-      ) : myGroup ? (
-        myGroup.success ? (
-          <>
-            <div className="">
-              <h1 className="text-3xl font-bold mb-4">مجموعتك</h1>
+      {!loading ? (
+        <div className="">
+          {myQualifyings?.qualifings.length !== 0 ? (
+            <div className="flex flex-col gap-10">
+              <div className="flex flex-col gap-4">
+                <h1 className="text-lg lg:text-2xl font-semibold">
+                  الادوار الاقصائيه
+                </h1>
+                <p>جميع الادوار</p>
+              </div>
               <div className="">
-                {myGroup.group.map((group) => (
-                  <div key={group._id.group.id} className="mt-8 w-full">
-                    <h2 className="text-xl font-semibold mb-4">
-                      مجموعة {group._id.group.name}
-                    </h2>
-                    <div className="w-full overflow-auto ">
-                      <table className="border-collapse border border-gray-200 mb-4">
-                        <thead className="bg-gray-100">
-                          <tr>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              الفريق
-                            </th>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              فوز
-                            </th>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              هزيمه
-                            </th>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              تعادل
-                            </th>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              النقط
-                            </th>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              له
-                            </th>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              عليه
-                            </th>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              الفرق
-                            </th>
-                            <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
-                              الترتيب
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
-                          {group.teams.map((team) => (
-                            <tr
-                              key={team.team.id}
-                              className="transition-colors duration-300"
-                            >
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.team.name}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.recordInfo.wins}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.recordInfo.losses}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.recordInfo.ties}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.recordInfo.points}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.recordInfo.goalsFor}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.recordInfo.goalsAgainst}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.recordInfo.goalsDifference}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                {team.recordInfo.order}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                {myQualifyings.qualifings.map((qualifing) => (
+                  <div key={qualifing._id}>
+                    <div className="flex flex-col gap-4">
+                      <h1 className="text-lg font-semibold">
+                        الدور {qualifing.round}
+                      </h1>
+                      <Image
+                        src={qualifing.image.secure_url}
+                        alt={qualifing.image.public_id}
+                        width={600}
+                        height={300}
+                      />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-          </>
-        ) : (
-          <div>
-            <h1 className="text-3xl font-bold mb-4">مجموعتك</h1>
-            <p className="text-lg font-medium">
-              لم يتم انشاء الدوري بعد ,انتظر حتي يتم بدء المسابقه
-            </p>
-          </div>
-        )
+          ) : (
+            myGroup &&
+            (myGroup.success ? (
+              <>
+                <div className="">
+                  <h1 className="text-3xl font-bold mb-4">مجموعتك</h1>
+                  <div className="">
+                    {myGroup.group.map((group) => (
+                      <div key={group._id.group.id} className="mt-8 w-full">
+                        <h2 className="text-xl font-semibold mb-4">
+                          مجموعة {group._id.group.name}
+                        </h2>
+                        <div className="w-full overflow-auto ">
+                          <table className="border-collapse border border-gray-200 mb-4">
+                            <thead className="bg-gray-100">
+                              <tr>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  الفريق
+                                </th>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  فوز
+                                </th>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  هزيمه
+                                </th>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  تعادل
+                                </th>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  النقط
+                                </th>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  له
+                                </th>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  عليه
+                                </th>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  الفرق
+                                </th>
+                                <th className="px-6 py-3 text-right font-medium text-gray-500 uppercase tracking-wider">
+                                  الترتيب
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200">
+                              {group.teams.map((team) => (
+                                <tr
+                                  key={team.team.id}
+                                  className="transition-colors duration-300"
+                                >
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.team.name}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.recordInfo.wins}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.recordInfo.losses}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.recordInfo.ties}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.recordInfo.points}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.recordInfo.goalsFor}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.recordInfo.goalsAgainst}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.recordInfo.goalsDifference}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    {team.recordInfo.order}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div>
+                <h1 className="text-3xl font-bold mb-4">مجموعتك</h1>
+                <p className="text-lg font-medium">
+                  لم يتم انشاء الدوري بعد ,انتظر حتي يتم بدء المسابقه
+                </p>
+              </div>
+            ))
+          )}
+        </div>
       ) : (
         <div className="text-center">Loading...</div>
       )}
