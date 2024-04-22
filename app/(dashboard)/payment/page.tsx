@@ -63,7 +63,7 @@ function Page() {
         <div className="flex flex-col gap-6 items-start">
           <div className="flex flex-col gap-4">
             <p className="text-[18px] font-medium ">
-              قم بتحويل 600 (ستمائه جنيه مصري فقط لا غير)علي هذا الرقم
+              قم بتحويل ١٥٠٠ (ألف وخمسمائة جنيه مصري فقط لا غير)علي هذا الرقم
             </p>
             <p className="text-[18px] font-medium bg-[#343434] px-10 py-2 text-[#B4B4B4] w-fit rounded-[10px] ">
               01066364269
@@ -119,8 +119,8 @@ function Page() {
                 بدون رسوم الدوره التاليه
               </p>
               <p className="text-gray-300">
-                - قيمة الاشتراك في البطولة 600 جنيه (ستمائه جنيه مصري فقط لا
-                غير)
+                - قيمة الاشتراك في البطولة ١٥٠٠ جنيه (ألف وخمسمائة جنيه مصري فقط
+                لا غير)
               </p>
               <p className="text-gray-300">
                 - يتم تصعيد الأول و الثاني من كل مجموعة و سيتم استكمال البطولة
